@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: app-ts
+
+spec:
+  replicas: 10
+  strategy:
+    # type: Recreate # provoca indisponibilidade durante a atualização, mas é mais simples e rápido, (válido para cron job / consumidor de fila)
+    type: RollingUpdate
+    rollingUpdate:
+      # maxSurge: 3
+      # maxUnavailable: 2
+      maxSurge: 20%
+      maxUnavailable: 10%
+  selector:
+    matchLabels:
+      api: app-ts
+  template:
+    metadata:
+      labels:
+        api: app-ts
+    spec:
+      containers:
+        - name: app-ts
+          image: lucapinheiro/app-ts:v3
+          imagePullPolicy: Always # Always | IfNotPresent | Never
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
