@@ -5,7 +5,7 @@ metadata:
   name: app-ts
 
 spec:
-  replicas: 10
+  replicas: 3
   strategy:
     # type: Recreate # provoca indisponibilidade durante a atualização, mas é mais simples e rápido, (válido para cron job / consumidor de fila)
     type: RollingUpdate
@@ -47,7 +47,7 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 64Mi
+              memory: 128Mi
             limits:
               cpu: 200m
-              memory: 128Mi
+              memory: 192Mi
