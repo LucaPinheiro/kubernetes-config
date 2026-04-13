@@ -1,0 +1,7 @@
+Probes - sondagens de verificação 
+StartupProbe - rota
+ReadinessProbe -> prontidão, ver se está ok para receber tráfego
+LivenessProbe -> validar de tempo em tempo se a aplicação está viva
+
+App A - MySql, Kafka, Redis
+
